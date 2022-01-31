@@ -175,9 +175,11 @@ namespace Assignment1
                 {
                     for (int j = 0; j < len; j++)
                     {
+                        //addition of diagonal elements at index with same i,j position
                         if (i == j)
                         {
                             sum+= bulls_grid[i, j];
+                           
                         }
                         else if (i + j == (len - 1))
                         {
@@ -197,18 +199,35 @@ namespace Assignment1
         }
         private static string RestoreString(string bulls_string, int[] indices)
         {
-            try
+ try
             {
-                //length of the array
-                int len = indices.Length;
-                string res = "";
-                for (int i = 1; i <=len; i++)
+                char res;
+                char a = bulls_string[1];
+                int b;
+                bool x,y;
+     //Checks if the array is sorted. When sorted, the character will be shuffled to the ith position
+     //the shuffled string is then returned
+                for (int j = 1; j < indices.Length; j++)
                 {
-                    //get the index of the num
-                    int num = Array.IndexOf(indices, i);
-                    res+=  bulls_string[num];
+                    if (indices[j - 1] > indices[j])
+                    {
+                        break;
+                    }
+					else
+					{
+						string z = bulls_string;
+						return (z);
+					}
+				}
+                // This function will shuffle the string as per the indices 
+				for (int i = 0; i < indices.Length; i++)
+                {
+                    b = indices[i];
+                    res = bulls_string[b];
+                    return res.ToString();
                 }
-                return res;
+                return "";
+
             }
             catch (Exception e)
             {
@@ -226,11 +245,12 @@ namespace Assignment1
                 int len = bulls_string6.Length;
                 //index of the character
                 int num = bulls_string6.IndexOf(ch, 0, len);
-                
+                 // characters from the index to the beginning of the string
                 for (int i = num; i >= 0; i--)
                 {
                     prefix_string += bulls_string6[i];
                 }
+                // remaining of the string is appended
                 for (int i = num + 1; i < len; i++)
                 {
                     prefix_string += bulls_string6[i];
@@ -246,3 +266,7 @@ namespace Assignment1
         }
     }
 }
+
+////Time Taken- Approx 5 hours 
+//Learning- Working with strings and its functions.
+//Recommendations- Great learning to understand how to tackle a proble in various ways
